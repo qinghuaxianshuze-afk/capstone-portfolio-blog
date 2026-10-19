@@ -8,8 +8,8 @@ Student   : Xianshu Ze  (24998025)
 
 | Part      | URL |
 |-----------|-----|
-| Front-End | https://xianshuze-portfolio.netlify.app |
-| Back-End  | https://capstone-portfolio-blog-api.onrender.com |
+| Front-End | https://capstone-client-lilac.vercel.app |
+| Back-End  | https://capstone-api-blond.vercel.app |
 
 (Both links are deployed from this repository.)
 
@@ -51,7 +51,7 @@ CapstoneProject/
 
 ## API Endpoints
 
-Base URL: `https://capstone-portfolio-blog-api.onrender.com` (local: `http://localhost:5000`)
+Base URL: `https://capstone-api-blond.vercel.app` (local: `http://localhost:5000`)
 
 ### Auth (`/api/users`)
 | Method | Path | Auth | Body / Purpose |
