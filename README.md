@@ -126,13 +126,16 @@ node promote-admin.js your@email.com
 
 ## Deployment Notes
 
-- **Back-end**: Render (free tier). Root directory `server/`, start command
-  `node server.js`. Environment variables: `MONGO_URI`, `JWT_SECRET`,
-  `CLIENT_URL` (the Netlify URL), `NODE_ENV=production`.
-- **Front-end**: Netlify. Root directory `client/`, build `npm run build`,
-  publish `dist`. Environment variable: `VITE_API_URL` (the Render URL).
-  SPA fallback via `public/_redirects` (`/*  /index.html  200`).
-- MongoDB Atlas Network Access must allow `0.0.0.0/0` (Render IPs vary).
+- **Back-end**: Vercel (serverless). Project root `server/`; `api/index.js`
+  exports the Express app as a cloud function, `vercel.json` rewrites every
+  path to it. Environment variables: `MONGO_URI`, `JWT_SECRET`.
+  Live URL: https://capstone-api-blond.vercel.app
+- **Front-end**: Vercel (static). Built with `npm run build` in `client/`,
+  the `dist/` output is deployed; `vercel.json` rewrites `/(.*)` to
+  `/index.html` so React Router deep links work. Environment variable baked
+  at build time: `VITE_API_URL` (the back-end URL above).
+  Live URL: https://capstone-client-lilac.vercel.app
+- MongoDB Atlas Network Access must allow `0.0.0.0/0` (Vercel IPs vary).
 
 ## Security Design (what the course taught)
 
