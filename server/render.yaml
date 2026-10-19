@@ -1,0 +1,17 @@
+# Render blueprint - deploy the Capstone back-end API
+services:
+  - type: web
+    name: capstone-portfolio-api
+    runtime: node
+    plan: free
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        sync: false        # set in the Render dashboard (secret)
+      - key: MONGO_URI
+        sync: false        # set in the Render dashboard (secret)
