@@ -18,7 +18,9 @@ function Navbar({ dark, onToggleDark }) {
       </Link>
       <div className="nav-links">
         <NavLink to="/" end className="nav-link">Home</NavLink>
+        <NavLink to="/projects" className="nav-link">Projects</NavLink>
         <NavLink to="/blog" className="nav-link">Blog</NavLink>
+        <NavLink to="/contact" className="nav-link">Contact</NavLink>
         {user && (
           <NavLink to="/admin" className="nav-link">Admin</NavLink>
         )}
@@ -31,7 +33,10 @@ function Navbar({ dark, onToggleDark }) {
             <button className="btn btn-outline" onClick={handleLogout}>Logout</button>
           </div>
         ) : (
-          <Link to="/login" className="btn btn-primary">Login</Link>
+          <>
+            <Link to="/login" className="btn btn-outline">Login</Link>
+            <Link to="/register" className="btn btn-primary">Register</Link>
+          </>
         )}
       </div>
     </nav>

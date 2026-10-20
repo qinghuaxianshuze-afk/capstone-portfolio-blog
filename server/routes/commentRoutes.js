@@ -11,4 +11,5 @@ router.post('/post/:postId', protect, ctrl.createComment);
 // /api/comments/:id           - delete (admin)
 router.delete('/:id', protect, adminOnly, ctrl.deleteComment);
 
+
 module.exports = router;

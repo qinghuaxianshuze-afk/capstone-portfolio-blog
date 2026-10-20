@@ -25,7 +25,7 @@ function PostDetail() {
     try {
       await api(`/api/comments/post/${id}`, {
         method: 'POST',
-        body: { content: text },
+        body: { body: text },
         token: tokenStore.get(),
       });
       setText('');
@@ -53,7 +53,7 @@ function PostDetail() {
         <div key={c._id} className="comment">
           <strong>{c.author?.username || 'anonymous'}</strong>
           <span className="muted"> · {new Date(c.createdAt).toLocaleString()}</span>
-          <p>{c.content}</p>
+          <p>{c.body}</p>
         </div>
       ))}
 

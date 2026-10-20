@@ -29,11 +29,11 @@ const Message = require('./models/MessageModel');
   if (!admin) { console.log('No admin user found - register one first.'); process.exit(1); }
 
   await Project.create([
-    { title: 'Achievement Replay Generator', description: 'A gamified "settlement screen" video generator: turn a week of activity data into a shareable replay clip with animated stats, built with Node.js and canvas rendering.', tags: ['Node.js', 'Canvas', 'Video'], featured: true },
-    { title: 'Desktop Pet (Snow Ghost Doll)', description: 'A live2D-style desktop companion extracted from a classic game: custom UE4 pak decryption, sprite-grid decoding, and a lightweight Electron-free Win32 tray pet.', tags: ['Reverse Engineering', 'UE4', 'Desktop App'], featured: true },
-    { title: 'Hospital Appointment Assistant', description: 'An automation tool that monitors released clinic slots and grabs an appointment the instant one opens, with retry queues and captcha-free session reuse.', tags: ['Python', 'Automation', 'HTTP'], featured: false },
-    { title: 'Karst Landscape Desktop Effect', description: 'A 3D desktop wallpaper effect: karst limestone silhouettes over shimmering water, rendered in real time with WebGL shaders.', tags: ['WebGL', 'Shaders', '3D'] },
-    { title: 'Blog REST API (Course Labs 9-14)', description: 'The back-end you are looking at: Express + Mongoose + JWT auth, MVC architecture, centralized error handling, and bcrypt password security.', tags: ['Express', 'MongoDB', 'JWT'] },
+    { user: admin._id, title: 'Achievement Replay Generator', description: 'A gamified "settlement screen" video generator: turn a week of activity data into a shareable replay clip with animated stats, built with Node.js and canvas rendering.', tags: ['Node.js', 'Canvas', 'Video'], featured: true },
+    { user: admin._id, title: 'Desktop Pet (Snow Ghost Doll)', description: 'A live2D-style desktop companion extracted from a classic game: custom UE4 pak decryption, sprite-grid decoding, and a lightweight Electron-free Win32 tray pet.', tags: ['Reverse Engineering', 'UE4', 'Desktop App'], featured: true },
+    { user: admin._id, title: 'Hospital Appointment Assistant', description: 'An automation tool that monitors released clinic slots and grabs an appointment the instant one opens, with retry queues and captcha-free session reuse.', tags: ['Python', 'Automation', 'HTTP'], featured: false },
+    { user: admin._id, title: 'Karst Landscape Desktop Effect', description: 'A 3D desktop wallpaper effect: karst limestone silhouettes over shimmering water, rendered in real time with WebGL shaders.', tags: ['WebGL', 'Shaders', '3D'] },
+    { user: admin._id, title: 'Blog REST API (Course Labs 9-14)', description: 'The back-end you are looking at: Express + Mongoose + JWT auth, MVC architecture, centralized error handling, and bcrypt password security.', tags: ['Express', 'MongoDB', 'JWT'] },
   ]);
 
   await Skill.create([
@@ -59,8 +59,8 @@ const Message = require('./models/MessageModel');
   });
 
   await Comment.create([
-    { post: p1._id, author: admin._id, content: 'The automation moment resonates - that is exactly how I got hooked too.' },
-    { post: p2._id, author: admin._id, content: 'Centralized error handling changed how I read other people\u2019s back-end code.' },
+    { post: p1._id, author: admin._id, body: 'The automation moment resonates - that is exactly how I got hooked too.' },
+    { post: p2._id, author: admin._id, body: 'Centralized error handling changed how I read other people\u2019s back-end code.' },
   ]);
 
   await Message.create([

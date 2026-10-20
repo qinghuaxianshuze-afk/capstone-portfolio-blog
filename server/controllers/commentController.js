@@ -20,7 +20,7 @@ exports.createComment = async (req, res, next) => {
     const comment = await Comment.create({
       post: req.params.postId,
       author: req.user._id,
-      content: req.body.content,
+      body: req.body.body,
     });
     res.status(201).json({ success: true, data: comment });
   } catch (error) { next(error); }

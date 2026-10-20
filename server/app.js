@@ -8,6 +8,7 @@ require('./config/dns-srv');
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet'); // spec Phase 5: security headers
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
@@ -38,6 +39,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(helmet()); // spec Phase 5: secure HTTP headers
 app.use(express.json());
 app.use(cookieParser());
 
@@ -52,7 +54,12 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/skills', skillRoutes);
 app.use('/api/messages', messageRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/blog', postRoutes);   // spec alias: /api/blog == /api/posts
 app.use('/api/comments', commentRoutes);
+
+// spec alias: POST /api/contact == POST /api/messages (contact form)
+const { sendMessage } = require('./controllers/messageController');
+app.post('/api/contact', sendMessage);
 
 // 404 + central error handler (Lab 12 contract)
 app.all('*', (req, res) => {

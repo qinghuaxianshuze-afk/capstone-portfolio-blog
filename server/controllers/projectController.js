@@ -20,7 +20,9 @@ exports.getProject = async (req, res, next) => {
 
 exports.createProject = async (req, res, next) => {
   try {
-    const project = await Project.create(req.body);
+    // Spec Phase 4: POST /api/projects associates the project with the
+    // logged-in user (req.user injected by the protect middleware).
+    const project = await Project.create({ ...req.body, user: req.user._id });
     res.status(201).json({ success: true, data: project });
   } catch (error) { next(error); }
 };

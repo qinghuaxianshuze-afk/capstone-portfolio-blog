@@ -10,6 +10,8 @@ const ProjectSchema = new mongoose.Schema(
     repoUrl: { type: String, default: '' },
     tags: { type: [String], default: [] },
     featured: { type: Boolean, default: false },
+    // Spec Phase 1: every project belongs to a user (the admin author).
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   },
   { timestamps: true }
 );

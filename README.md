@@ -72,7 +72,11 @@ Base URL: `https://xianshuze-capstone-api.netlify.app` (local: `http://localhost
 | POST | `/api/skills` | admin | `{ name, level, category }` |
 | DELETE | `/api/skills/:id` | admin | remove skill |
 
-### Blog (`/api/posts`, `/api/comments`)
+### Blog (`/api/posts` + spec alias `/api/blog`, `/api/comments`)
+Spec aliases: `GET/POST /api/blog` == `/api/posts`, `POST /api/contact` ==
+`POST /api/messages`, and `GET/POST /api/blog/:postId/comments` for nested
+comment endpoints. Update/delete on a post is allowed for its ORIGINAL AUTHOR
+(or an admin) - the Phase 3 authorization rule (403 otherwise).
 | Method | Path | Auth | Body / Purpose |
 |--------|------|------|----------------|
 | GET | `/api/posts?category=&tag=` | public | list posts (author populated) |

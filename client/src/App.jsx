@@ -7,6 +7,9 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import PostDetail from './pages/PostDetail';
 import Login from './pages/Login';
+import Register from './pages/Register';
+import ProjectsPage from './pages/ProjectsPage';
+import ContactPage from './pages/ContactPage';
 import Admin from './pages/Admin';
 
 function App() {
@@ -17,9 +20,12 @@ function App() {
       <Navbar dark={dark} onToggleDark={() => setDark(!dark)} />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<PostDetail />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/admin"
           element={

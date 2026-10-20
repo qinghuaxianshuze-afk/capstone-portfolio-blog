@@ -1,4 +1,5 @@
-// models/PostModel.js - Blog posts (Lab 9 heritage, extended for capstone)
+// models/PostModel.js - BlogPost model (spec Phase 1). Collection kept
+// as 'posts' so existing data is reused.
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema(
@@ -26,4 +27,14 @@ const PostSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Post', PostSchema);
+// Virtual 'comments': lets getPost populate() every comment attached to a
+// post without storing ids on the post itself (spec Phase 4).
+PostSchema.virtual('comments', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'post',
+});
+PostSchema.set('toJSON', { virtuals: true });
+PostSchema.set('toObject', { virtuals: true });
+
+module.exports = mongoose.model('BlogPost', PostSchema, 'posts');

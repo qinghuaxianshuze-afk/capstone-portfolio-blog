@@ -24,6 +24,18 @@ export function AuthProvider({ children }) {
     return u;
   };
 
+  const register = async (username, email, password) => {
+    const data = await api('/api/users/register', {
+      method: 'POST',
+      body: { username, email, password },
+    });
+    tokenStore.set(data.token);
+    const u = { _id: data._id, username: data.username, email: data.email, role: data.role };
+    setUser(u);
+    localStorage.setItem('capstone_user', JSON.stringify(u));
+    return u;
+  };
+
   const logout = () => {
     tokenStore.clear();
     localStorage.removeItem('capstone_user');
@@ -31,7 +43,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
