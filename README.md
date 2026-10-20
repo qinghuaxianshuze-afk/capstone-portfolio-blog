@@ -8,8 +8,8 @@ Student   : Xianshu Ze  (24998025)
 
 | Part      | URL |
 |-----------|-----|
-| Front-End | https://capstone-client-lilac.vercel.app |
-| Back-End  | https://capstone-api-blond.vercel.app |
+| Front-End | https://xianshuze-capstone-site.netlify.app |
+| Back-End  | https://xianshuze-capstone-api.netlify.app |
 
 (Both links are deployed from this repository.)
 
@@ -51,7 +51,7 @@ CapstoneProject/
 
 ## API Endpoints
 
-Base URL: `https://capstone-api-blond.vercel.app` (local: `http://localhost:5000`)
+Base URL: `https://xianshuze-capstone-api.netlify.app` (local: `http://localhost:5000`)
 
 ### Auth (`/api/users`)
 | Method | Path | Auth | Body / Purpose |
@@ -126,16 +126,15 @@ node promote-admin.js your@email.com
 
 ## Deployment Notes
 
-- **Back-end**: Vercel (serverless). Project root `server/`; `api/index.js`
-  exports the Express app as a cloud function, `vercel.json` rewrites every
-  path to it. Environment variables: `MONGO_URI`, `JWT_SECRET`.
-  Live URL: https://capstone-api-blond.vercel.app
-- **Front-end**: Vercel (static). Built with `npm run build` in `client/`,
-  the `dist/` output is deployed; `vercel.json` rewrites `/(.*)` to
-  `/index.html` so React Router deep links work. Environment variable baked
-  at build time: `VITE_API_URL` (the back-end URL above).
-  Live URL: https://capstone-client-lilac.vercel.app
-- MongoDB Atlas Network Access must allow `0.0.0.0/0` (Vercel IPs vary).
+- **Back-end**: Netlify Functions (serverless). `netlify/api.js` wraps the
+  same Express app with serverless-http; `netlify.toml` rewrites every path
+  to the function. Secrets are baked into the esbuild bundle via a local-only
+  `netlify/env-inject.js` (gitignored).  Live URL: https://xianshuze-capstone-api.netlify.app
+- **Front-end**: Netlify (static). Built with `npm run build` in `client/`;
+  `_redirects` sends unknown paths to `/index.html` so React Router deep
+  links work. `VITE_API_URL` is baked at build time (the back-end URL above).
+  Live URL: https://xianshuze-capstone-site.netlify.app
+- MongoDB Atlas Network Access must allow `0.0.0.0/0` (Netlify IPs vary).
 
 ## Security Design (what the course taught)
 
